@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signup Form</title>
+</head>
+<body>
+<section>
+  <form action="/signup" method="POST">
+    <h1>Sign Up</h1>
+    <div class="inputbox">
+      <input type="text" id= "username" name="username" required>
+      <label for="username">Name</label>
+    </div>
+
+    <div class="inputbox">
+      <input type="password" id="password" name="password" required>
+      <label for="password">Password</label>
+    </div>
+    <div class="inputbox">
+      <input type="password" id="passwordcon" name="passwordcon" required>
+      <label for="passwordcon">Confirm Password</label>
+    </div>
+    <button id="submit">Sign Up</button>
+  </form>
+</section>
+</body>
+</html>
+<script>
+  const submitButttom = document.getElementById("submit");
+  submitButttom.addEventListener('click', (event) => {
+    event.preventDefault(); // Stop form from submitting
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('passwordcon').value;
+
+    const data = {
+      username,
+      password
+    }
+
+    if (password === confirmPassword) {
+      const jsonData = JSON.stringify(data);
+      fetch('/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: jsonData
+      })
+      .then(response => {
+        console.log("Signup request sent!");
+      })
+    } else {
+      console.log("Passwords do not match");
+    }
+});
+</script>
