@@ -50,7 +50,9 @@
         body: jsonData
       })
       .then(response => {
-        console.log("Signup request sent!");
+        window.location.href = "/login"
+        console.log();
+
       })
     } else {
       console.log("Passwords do not match");
