@@ -5,9 +5,15 @@ server:
 
 spring:
   datasource:
-    password: 
+    password: test
     url: jdbc:postgresql://localhost:5432/registration
-    username:
+    username: chriswood
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
   jpa:
     hibernate:
       ddl-auto: update
